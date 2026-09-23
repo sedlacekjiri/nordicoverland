@@ -194,7 +194,12 @@ a:hover { text-decoration-thickness: 2px; }
 .facts div { padding: 1.1rem 0; border-bottom: 1px solid var(--line); }
 .facts dt { font: 700 1.6rem/1.1 var(--font-display); text-transform: uppercase; letter-spacing: .01em; }
 .facts dd { margin: .25rem 0 0; color: var(--muted); max-width: 46ch; }
+.offer { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2rem; }
+.offer div { padding: 1.25rem; border: 1px solid var(--line); border-radius: var(--radius); }
+.offer h3 { margin-bottom: .4rem; font: 700 1.4rem/1.1 var(--font-display); }
+.offer p { margin: 0; color: var(--muted); }
 @media (max-width: 52rem) { .split { grid-template-columns: 1fr; } .section__head { grid-template-columns: 1fr; } }
+@media (max-width: 26rem) { .offer { grid-template-columns: 1fr; } }
 
 /* 11. Vehicles (plain list of makes, not links) */
 .vehicles { display: flex; flex-wrap: wrap; gap: .25rem 2rem; list-style: none; margin-top: clamp(2rem, 4vw, 3.5rem); }
@@ -211,8 +216,10 @@ a:hover { text-decoration-thickness: 2px; }
 .range__body { padding: 1.5rem; }
 .range__body h3 { margin-bottom: .6rem; font-size: 1.75rem; }
 .range__body p { margin: 0; color: var(--muted); }
-.range .range__eg { margin-top: .75rem; font-size: 1rem; line-height: 1.45; }
-.range__eg strong { font-weight: 600; color: var(--ink); }
+.range__cta { display: inline-flex; align-items: center; margin-top: 1rem; padding: .45rem 1rem;
+  border: 1.5px solid var(--l-btn-bg); border-radius: var(--radius); color: var(--l-btn-bg);
+  font: 600 .95rem/1 var(--font-body); text-decoration: none; }
+.range__cta:hover { background: var(--l-btn-bg); color: var(--l-btn-ink); }
 @media (max-width: 62rem) { .range { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 38rem) { .range { grid-template-columns: 1fr; } }
 
@@ -249,6 +256,11 @@ a:hover { text-decoration-thickness: 2px; }
 .footer__brand .logo--mark { --h: 4.5rem; }
 .footer__brand p { margin: 0; color: var(--muted); max-width: 26ch; }
 .footer__brand .logo--word { --h: 1.05rem; margin-bottom: .75rem; }
+.footer__social { display: flex; gap: .6rem; margin-top: 1rem; }
+.footer__social a { display: inline-flex; align-items: center; justify-content: center; width: 2.25rem; height: 2.25rem;
+  border: 1.5px solid color-mix(in srgb, var(--ink) 45%, transparent); border-radius: 999px; color: inherit; }
+.footer__social svg { width: 1.1rem; height: 1.1rem; }
+.footer__social a:hover { background: var(--d-btn-bg); color: var(--d-btn-ink); border-color: var(--d-btn-bg); }
 .site-footer h2 { font-size: 1.6rem; text-transform: none; letter-spacing: .01em; color: var(--muted); margin-bottom: .9rem; }
 .site-footer ul { list-style: none; }
 .site-footer li + li { margin-top: .4rem; }
@@ -275,4 +287,3 @@ a:hover { text-decoration-thickness: 2px; }
 .contact__intro { margin-top: 1.5rem; }
 .contact__note { margin-top: 1.5rem; color: var(--muted); font-size: 1rem; max-width: 34ch; }
 .contact .form { margin-top: 0; }
-.footer__legal .legal-note { flex-basis: 100%; }
