@@ -10,17 +10,10 @@
   var THEME_COLOURS = { summer: '#2e5242', winter: '#0e1114' };
 
   /* ---------- Seasons ----------
-     Iceland's traditional calendar has two seasons:
-       Summer starts on "Sumardagurinn fyrsti", the Thursday between 19 and 25 April.
-       Winter starts on "Fyrsti vetrardagur", the Saturday between 21 and 27 October. */
+     Winter is shown from November to March, summer from April to October. */
   function autoSeason(now) {
-    now = now || new Date();
-    var y = now.getFullYear();
-    var summer = new Date(y, 3, 19);
-    var winter = new Date(y, 9, 21);
-    while (summer.getDay() !== 4) summer.setDate(summer.getDate() + 1);
-    while (winter.getDay() !== 6) winter.setDate(winter.getDate() + 1);
-    return now >= summer && now < winter ? 'summer' : 'winter';
+    var month = (now || new Date()).getMonth();
+    return month >= 3 && month <= 9 ? 'summer' : 'winter';
   }
 
   var seasonButtons = document.querySelectorAll('[data-season]');
@@ -114,6 +107,47 @@
       status.textContent = 'Thanks, your enquiry is ready to send. (This is the static preview, so nothing was sent yet.)';
       status.focus();
     });
+  }
+
+  /* ---------- Gallery lightbox ---------- */
+  var galleryImgs = document.querySelectorAll('.gallery img');
+  if (galleryImgs.length) {
+    var lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.hidden = true;
+    lightbox.innerHTML = '<button class="lightbox__close" type="button" aria-label="Close">&times;</button><img class="lightbox__img" alt="">';
+    document.body.appendChild(lightbox);
+    var lightboxImg = lightbox.querySelector('.lightbox__img');
+    var lightboxClose = lightbox.querySelector('.lightbox__close');
+    var lastFocused = null;
+
+    function onLightboxKeydown(e) { if (e.key === 'Escape') closeLightbox(); }
+    function openLightbox(img) {
+      lastFocused = document.activeElement;
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.hidden = false;
+      lightboxClose.focus();
+      document.addEventListener('keydown', onLightboxKeydown);
+    }
+    function closeLightbox() {
+      lightbox.hidden = true;
+      lightboxImg.src = '';
+      document.removeEventListener('keydown', onLightboxKeydown);
+      if (lastFocused) lastFocused.focus();
+    }
+
+    galleryImgs.forEach(function (img) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      if (!img.hasAttribute('aria-label')) img.setAttribute('aria-label', 'View larger photo');
+      img.addEventListener('click', function () { openLightbox(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
+      });
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function (e) { if (e.target === lightbox) closeLightbox(); });
   }
 
   /* ---------- Footer year ---------- */

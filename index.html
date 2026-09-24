@@ -11,13 +11,10 @@
 <link rel="stylesheet" href="assets/css/logo-masks.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <script>
-/* Sets the season before first paint. Iceland has two seasons:
-   summer = Thursday 19-25 April, winter = Saturday 21-27 October. A visitor's own choice
-   is remembered until the next season change. (WordPress: print this in wp_head.) */
+/* Sets the season before first paint: winter from November to March, summer from April to October.
+   A visitor's own choice is remembered until the next season change. (WordPress: print this in wp_head.) */
 (function(){var d=document.documentElement;d.classList.remove('no-js');d.classList.add('js');
-function s(n){var y=n.getFullYear(),a=new Date(y,3,19),w=new Date(y,9,21);
-while(a.getDay()!==4)a.setDate(a.getDate()+1);while(w.getDay()!==6)w.setDate(w.getDate()+1);
-return n>=a&&n<w?'summer':'winter'}
+function s(n){var m=n.getMonth();return m>=3&&m<=9?'summer':'winter'}
 var auto=s(new Date()),t=auto;
 try{var c=JSON.parse(localStorage.getItem('no-season')||'null');
 if(c&&c.auto===auto&&(c.choice==='summer'||c.choice==='winter'))t=c.choice}catch(e){}
@@ -37,7 +34,7 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
     <nav class="nav" id="site-nav" aria-label="Main" data-open="false">
       <a href="#supply">Who we supply</a>
       <a href="#range">Our Products</a>
-      <a href="#why">Why horntools</a>
+      <a href="#why">Why Us</a>
       <a href="#contact">Contact</a>
     </nav>
     <div class="season" role="group" aria-label="Site season">
@@ -71,34 +68,35 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
   </div>
 </section>
 
-<section class="section band band--light" id="supply" aria-labelledby="supply-title">
+<!-- TODO: swap these placeholder photos for real ones (fleet delivery, an individual customer's vehicle, a rented tent in use) -->
+<section class="section band band--white" id="supply" aria-labelledby="supply-title">
   <div class="wrap">
     <div class="section__head">
-      <h2 id="supply-title">For the businesses that sell, fit, rent and guide</h2>
-      <p>Choose the one that fits your business and we&rsquo;ll start your enquiry.</p>
+      <h2 id="supply-title">Who We Supply</h2>
     </div>
-    <ul class="index">
-        <li><a class="index__row" href="#contact" data-type="retailer">
-          <span class="index__name">Retailers</span>
-          <span class="index__desc">Outdoor, 4x4 and camping shops that want to carry a complete overland range.</span>
-          <svg class="index__go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a></li>
-        <li><a class="index__row" href="#contact" data-type="workshop">
-          <span class="index__name">Workshops and installers</span>
-          <span class="index__desc">Garages and specialists who fit roof racks, winches, lighting and protection for their customers.</span>
-          <svg class="index__go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a></li>
-        <li><a class="index__row" href="#contact" data-type="rental">
-          <span class="index__name">Rental companies</span>
-          <span class="index__desc">Camper and 4x4 fleets that need roof tents, awnings and storage that work every day.</span>
-          <svg class="index__go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a></li>
-        <li><a class="index__row" href="#contact" data-type="operator">
-          <span class="index__name">Tour operators and outfitters</span>
-          <span class="index__desc">Guides and expedition operators who equip vehicles and camps for guests.</span>
-          <svg class="index__go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a></li>
-    </ul>
+    <div class="trio">
+  <a class="trio__item" href="#contact" data-type="b2b">
+    <h2 class="trio__title">B2B and fleet solutions</h2>
+    <div class="trio__photo">
+      <img src="assets/img/field-vehicle.jpg" width="1400" height="1122" loading="lazy"
+           alt="A white Ineos Grenadier with a roof tent and a lit awning, parked at dusk with two people talking beside it.">
+    </div>
+  </a>
+  <a class="trio__item" href="#contact" data-type="individual">
+    <h2 class="trio__title">Individuals</h2>
+    <div class="trio__photo">
+      <img src="assets/img/individuals.jpg" width="6140" height="2193" loading="lazy" style="object-position: 54% 45%;"
+           alt="A couple looks out from an open roof tent on a white 4x4, parked on a misty mountain track.">
+    </div>
+  </a>
+  <a class="trio__item" href="#contact" data-type="rent">
+    <h2 class="trio__title">Try before you buy &ndash; rent a tent</h2>
+    <div class="trio__photo">
+      <img src="assets/img/range-roof-tents.jpg" width="2048" height="1366" loading="lazy"
+           alt="A man and a woman lean out of an open hard-shell roof tent, smiling.">
+    </div>
+  </a>
+    </div>
   </div>
 </section>
 
@@ -106,15 +104,19 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
   <div class="wrap">
     <div class="section__head">
       <h2 id="range-title">Our Products</h2>
-      <p>Nine product groups from horntools. Ask for the full catalogue with your dealer terms.</p>
     </div>
     <!-- TODO: replace .range__photo placeholders with real product photos -->
     <ul class="range">
         <li class="range__card">
-          <div class="range__photo"><img src="assets/img/range-roof-tents.jpg" width="2048" height="1366" loading="lazy" alt="A man and a woman lean out of an open hard-shell roof tent, smiling."></div>
-          <div class="range__body">
-            <h3>Roof tents</h3>
-            <p>Hard-shell roof tents for two or three people, and other models.</p>
+          <a class="range__link" href="roof-tents.html">
+            <div class="range__photo"><img src="assets/img/range-roof-tents.jpg" width="2048" height="1366" loading="lazy" alt="A man and a woman lean out of an open hard-shell roof tent, smiling."></div>
+            <div class="range__body">
+              <h3>Roof tents</h3>
+              <p>Hard-shell roof tents for two or three people, and other models.</p>
+            </div>
+          </a>
+          <div class="range__actions">
+            <a class="range__cta" href="roof-tents.html">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -123,6 +125,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Awnings</h3>
             <p>Freestanding awnings in 180°, 270° and straight versions.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -131,6 +136,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Roof racks</h3>
             <p>ExRoof platforms made to fit specific vehicles.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -139,6 +147,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Winches</h3>
             <p>Electric winches and mobile winch systems.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -147,6 +158,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Lighting</h3>
             <p>LED bars and headlights from the Strands range.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -155,6 +169,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Recovery gear</h3>
             <p>Kinetic recovery kits, boards and pulleys.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -163,6 +180,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Camping equipment</h3>
             <p>Camp furniture and everyday equipment.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -171,6 +191,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Transport boxes and bags</h3>
             <p>Waterproof roof boxes, transport boxes and expedition bags.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -179,6 +202,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
           <div class="range__body">
             <h3>Off-road accessories</h3>
             <p>Rock sliders and vehicle protection.</p>
+          </div>
+          <div class="range__actions">
+            <a class="range__cta" href="#">More details</a>
             <a class="range__cta" href="#contact">Send enquiry</a>
           </div>
         </li>
@@ -193,7 +219,7 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
            alt="A white Ineos Grenadier with a roof tent and a lit awning, parked at dusk with two people talking beside it.">
     </div>
     <div class="split__body">
-      <h2 id="why-title">Why horntools</h2>
+      <h2 id="why-title">Why Us</h2>
       <p>Weather changes fast in Iceland and services can be far apart. Equipment for customers, guests and fleets has to be well made and easy to use with cold hands.</p>
       <dl class="facts">
         <div><dt>Developed in Austria</dt><dd>Developed and tested by horntools for almost 30 years.</dd></div>
@@ -208,50 +234,27 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
   <div class="wrap">
     <div class="section__head">
       <h2 id="fit-title">Fitment for the vehicles Iceland drives</h2>
-      <p>horntools builds vehicle-specific racks, mounts and protection for these makes. Send us the models your customers drive and we&rsquo;ll check coverage.</p>
+      <p>Nordic Overland offers vehicle-specific racks, mounts and protection for a wide range of brands. Send us the models you drive and we&rsquo;ll check what fits.</p>
     </div>
     <ul class="vehicles">
-        <li>Toyota</li>
-        <li>Suzuki</li>
-        <li>Land Rover</li>
-        <li>Ineos</li>
-        <li>Isuzu</li>
-        <li>Mitsubishi</li>
-        <li>Nissan</li>
-        <li>Ford</li>
-        <li>Mercedes-Benz</li>
-        <li>VW</li>
-        <li>Dacia</li>
-        <li>Subaru</li>
-        <li>Opel</li>
-        <li>Peugeot</li>
-        <li>Citroën</li>
-        <li>Lada</li>
-        <li>BAW</li>
+        <li><img src="assets/img/brands/toyota.svg" alt="Toyota" loading="lazy"></li>
+        <li><img src="assets/img/brands/suzuki.svg" alt="Suzuki" loading="lazy"></li>
+        <li><img src="assets/img/brands/landrover.svg" alt="Land Rover" loading="lazy"></li>
+        <li><img src="assets/img/brands/ineos.svg" alt="Ineos" loading="lazy"></li>
+        <li><img src="assets/img/brands/isuzu.svg" alt="Isuzu" loading="lazy"></li>
+        <li><img src="assets/img/brands/mitsubishi.svg" alt="Mitsubishi" loading="lazy"></li>
+        <li><img src="assets/img/brands/nissan.svg" alt="Nissan" loading="lazy"></li>
+        <li><img src="assets/img/brands/ford.svg" alt="Ford" loading="lazy"></li>
+        <li><img src="assets/img/brands/mercedes.svg" alt="Mercedes-Benz" loading="lazy"></li>
+        <li><img src="assets/img/brands/volkswagen.svg" alt="VW" loading="lazy"></li>
+        <li><img src="assets/img/brands/dacia.svg" alt="Dacia" loading="lazy"></li>
+        <li><img src="assets/img/brands/subaru.svg" alt="Subaru" loading="lazy"></li>
+        <li><img src="assets/img/brands/opel.svg" alt="Opel" loading="lazy"></li>
+        <li><img src="assets/img/brands/peugeot.svg" alt="Peugeot" loading="lazy"></li>
+        <li><img src="assets/img/brands/citroen.svg" alt="Citroën" loading="lazy"></li>
+        <li><img src="assets/img/brands/lada.svg" alt="Lada" loading="lazy"></li>
+        <li><img src="assets/img/brands/bmw.svg" alt="BMW" loading="lazy"></li>
     </ul>
-  </div>
-</section>
-
-<section class="section band band--light" id="individuals" aria-labelledby="individuals-title">
-  <div class="wrap split">
-    <div class="split__media">
-      <img src="assets/img/individuals.jpg" width="6140" height="2193" loading="lazy" style="object-position: 54% 45%;"
-           alt="A couple looks out from an open roof tent on a white 4x4, parked on a misty mountain track.">
-    </div>
-    <div class="split__body">
-      <h2 id="individuals-title">Not a business? We&rsquo;ve got you too</h2>
-      <p>Alongside dealer supply, we sell and rent horntools gear direct to individuals heading out on their own trip.</p>
-      <div class="offer">
-        <div>
-          <h3>Buy</h3>
-          <p>Take home a roof tent, awning or recovery kit of your own.</p>
-        </div>
-        <div>
-          <h3>Rent</h3>
-          <p>Hire what you need for a single trip, no long-term commitment.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -265,7 +268,6 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
         <div><dt>Phone</dt><dd><a href="tel:+3547878586">+354 787 8586</a></dd></div>
         <div><dt>Address</dt><dd>Hafnargata 29, 230 Reykjanesbær</dd></div>
       </dl>
-      <p class="contact__note">Not a business? We also sell and rent direct to individuals &mdash; write to us and we&rsquo;ll help you out.</p>
     </div>
     <form class="form" data-enquiry novalidate>
           <div class="field">
@@ -289,15 +291,12 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
             <span class="field__error" id="phone-error" aria-live="polite"></span>
           </div>
       <div class="field field--full">
-        <label for="type">Type of business</label>
+        <label for="type">Type of enquiry</label>
         <select id="type" name="type">
               <option value="">Select one</option>
-              <option value="retailer">Retailers</option>
-              <option value="workshop">Workshops and installers</option>
-              <option value="rental">Rental companies</option>
-              <option value="operator">Tour operators and outfitters</option>
-              <option value="individual">Individual / personal use</option>
-              <option value="other">Other</option>
+              <option value="b2b">B2B / fleet outfitting</option>
+              <option value="individual">Individual</option>
+              <option value="rent">Rent a tent</option>
         </select>
       </div>
       <div class="field field--full">
@@ -311,6 +310,36 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
   </div>
 </section>
 
+<!-- TODO (WordPress): this grid becomes a loop over the latest 3 blog posts (featured image + title, linked to the post). Photos and titles below are placeholders. -->
+<section class="section band band--white" id="blog" aria-labelledby="blog-title">
+  <div class="wrap">
+    <div class="section__head">
+      <h2 id="blog-title">Blog</h2>
+    </div>
+    <ul class="blog">
+      <li>
+        <a class="blog__item" href="post-campfire-nights.html">
+          <div class="blog__photo"><img src="assets/img/hero-1200.jpg" width="1200" height="675" loading="lazy" alt=""></div>
+          <h3>Campfire nights: how to set up camp in Iceland</h3>
+        </a>
+      </li>
+      <li>
+        <a class="blog__item" href="#">
+          <div class="blog__photo"><img src="assets/img/range-awning.jpg" width="1419" height="1060" loading="lazy" alt=""></div>
+          <h3>Awning tips for windy campsites</h3>
+        </a>
+      </li>
+      <li>
+        <a class="blog__item" href="#">
+          <div class="blog__photo"><img src="assets/img/individuals.jpg" width="6140" height="2193" loading="lazy" style="object-position: 54% 45%;" alt=""></div>
+          <h3>Choosing a roof tent for Icelandic weather</h3>
+        </a>
+      </li>
+    </ul>
+    <div class="section__foot"><a class="btn btn--black-line" href="blog.html">More posts</a></div>
+  </div>
+</section>
+
 </main>
 
 <footer class="site-footer band band--dark">
@@ -321,10 +350,9 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
         <div>
           <span class="logo logo--word" aria-hidden="true"></span>
           <p>Icelandic distributor of horntools overlanding and camping equipment.</p>
-          <!-- TODO: point these at the real Facebook and Instagram profiles -->
           <div class="footer__social">
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
+            <a href="https://www.facebook.com/profile.php?id=61588785907349" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.91h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg></a>
+            <a href="https://www.instagram.com/nordicoverland.is/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></a>
           </div>
         </div>
       </div>
@@ -333,7 +361,7 @@ var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('co
         <ul>
           <li><a href="#supply">Who we supply</a></li>
           <li><a href="#range">Our Products</a></li>
-          <li><a href="#why">Why horntools</a></li>
+          <li><a href="#why">Why Us</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
